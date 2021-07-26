@@ -17,7 +17,7 @@ let CreatePostCard = (props) => {
     for (let val in post) {
         if (post[val]) {
             postCards.push(
-                <div className="post" key={val}>
+                <Link className="post" key={val} to={`/post/${post[val]._id}`}>
 
                     <div className="postHeader">
                         <div className="postTitle">{post[val].title}</div>
@@ -40,7 +40,7 @@ let CreatePostCard = (props) => {
                     <div className="postDesc">{post[val].desc}</div>
                     <div className="postComments">Comments : {post[val].comments.length}</div>
 
-                </div >
+                </Link >
             )
         }
     }
@@ -58,7 +58,6 @@ let Posts = (props) => {
         // fetches post
         script.getData('/api/post')
             .then((data) => {
-                console.log(data);
                 setPosts(data)
             })
             .catch((err) => {

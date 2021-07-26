@@ -103,7 +103,7 @@ code {
   border-radius: 5px;
   cursor: pointer;
   background-color: var(--backSec);
-  padding: 5px 10px;
+  padding: 5px 20px;
 }
 
 .post:hover{

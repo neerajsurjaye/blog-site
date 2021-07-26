@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Switch, Route, useRouteMatch, useLocation } from "react-router-dom"
+import { Switch, Route, useRouteMatch, useHistory } from "react-router-dom"
 import script from '../scripts/index'
 
 let SignUp = () => {
@@ -7,10 +7,14 @@ let SignUp = () => {
     let [name, setName] = useState('')
     let [pass, setPass] = useState('')
 
+    let history = useHistory()
+
     let handleSignUp = (e) => {
+        history.push('/')
         script.postData('/api/auth/sign-up', { name, pass })
             .then((data) => {
                 console.log("res", data);
+
             })
     }
 
@@ -31,11 +35,14 @@ let LogIn = () => {
     let [name, setName] = useState('')
     let [pass, setPass] = useState('')
 
+    let history = useHistory('/')
+
     let handleLogIn = (e) => {
         script.postData('/api/auth/log-in', { name, pass })
             .then((data) => {
                 console.log("res", data);
                 window.localStorage.setItem('auth', data.token)
+                history.push('/')
             })
     }
 
