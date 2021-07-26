@@ -1,11 +1,13 @@
 import { useState } from "react"
 import { Switch, Route, useRouteMatch, useHistory } from "react-router-dom"
 import script from '../scripts/index'
+import Alert from "./Alert"
 
 let SignUp = () => {
     // signupform
     let [name, setName] = useState('')
     let [pass, setPass] = useState('')
+    let [message, setMessage] = useState()
 
     let history = useHistory()
 
@@ -13,19 +15,24 @@ let SignUp = () => {
         history.push('/')
         script.postData('/api/auth/sign-up', { name, pass })
             .then((data) => {
-                console.log("res", data);
-
+                setMessage(data)
             })
     }
 
-    return <div className="auth">
+    if (message) {
+        return <Alert message={message}></Alert>
+    }
+
+    return <div className="container">
         <h1>Sign-Up</h1>
         <form>
-            <label>UserName:</label>
+            <label className='inputTitle'>UserName:</label>
             <input type='text' value={name} onChange={(e) => { setName(e.target.value); }}></input>
-            <label>Password:</label>
+
+            <label className='inputTitle'>Password:</label>
             <input type='password' value={pass} onChange={(e) => { setPass(e.target.value); }}></input>
-            <input type='button' onClick={handleSignUp} value='Submit'></input>
+
+            <input type='button' className='btn' onClick={handleSignUp} value='Submit'></input>
         </form>
     </div>
 }
@@ -34,26 +41,32 @@ let LogIn = () => {
     // log in form
     let [name, setName] = useState('')
     let [pass, setPass] = useState('')
+    let [message, setMessage] = useState()
 
-    let history = useHistory('/')
 
     let handleLogIn = (e) => {
         script.postData('/api/auth/log-in', { name, pass })
             .then((data) => {
                 console.log("res", data);
                 window.localStorage.setItem('auth', data.token)
-                history.push('/')
+                setMessage(data)
             })
     }
 
-    return <div className="auth">
+    if (message) {
+        return <Alert message={message}></Alert>
+    }
+
+    return <div className="container">
         <h1>Log-in</h1>
         <form>
-            <label>UserName:</label>
+            <label className='inputTitle'>UserName:</label>
             <input type='text' value={name} onChange={(e) => { setName(e.target.value); }}></input>
-            <label>Password:</label>
+
+            <label className='inputTitle'>Password:</label>
             <input type='password' value={pass} onChange={(e) => { setPass(e.target.value); }}></input>
-            <input type='button' onClick={handleLogIn} value='Submit'></input>
+
+            <input type='button' className='btn' onClick={handleLogIn} value='Submit'></input>
         </form>
     </div>
 }
