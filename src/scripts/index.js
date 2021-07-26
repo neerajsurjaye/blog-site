@@ -14,6 +14,20 @@ let script = (() => {
             })
     }
 
+    let postAuthData = (url, data, token) => {
+        return fetch(host + url, {
+            method: "POST",
+            headers: {
+                'Content-type': 'application/json',
+                'auth': `token ${token}`
+            },
+            body: JSON.stringify(data)
+        })
+            .then((res) => {
+                return res.json()
+            })
+    }
+
     let getData = (url) => {
         return fetch(host + url)
             .then((data) => {
@@ -22,7 +36,12 @@ let script = (() => {
 
     }
 
-    return { postData, getData }
+    let getFullDateAndTime = (date) => {
+        date = new Date(date)
+        return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} - ${date.getHours()}h:${date.getMinutes()}m`;
+    }
+
+    return { postData, getData, getFullDateAndTime, postAuthData }
 })()
 
 export default script

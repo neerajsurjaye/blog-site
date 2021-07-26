@@ -2,7 +2,8 @@ import Auth from "./components/Auth";
 import Posts from "./components/Posts";
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Navbar from "./components/Navbar";
-
+import AddPost from "./components/AddPostComp";
+import AddPostPage from "./components/AddPostPage";
 
 function App() {
   return (
@@ -12,18 +13,26 @@ function App() {
 
       <BrowserRouter>
         <Navbar></Navbar>
-        <Switch>
-          {/* //auth route */}
-          <Route path='/auth/'>
-            <Auth></Auth>
-          </Route>
+        <div className="container">
+          <Switch>
 
-          <Route path='/'>
-            <Posts></Posts>
-          </Route>
+            {/* //auth route */}
+            <Route path='/auth/'>
+              <Auth></Auth>
+            </Route>
+
+            <Route path='/add-post'>
+              <AddPostPage></AddPostPage>
+            </Route>
+
+            <Route path='/'>
+              <AddPost></AddPost>
+              <Posts></Posts>
+            </Route>
 
 
-        </Switch>
+          </Switch>
+        </div>
 
       </BrowserRouter>
     </div>

@@ -32,9 +32,10 @@ let LogIn = () => {
     let [pass, setPass] = useState('')
 
     let handleLogIn = (e) => {
-        script.postData('http://localhost:5000/api/auth/log-in', { name, pass })
+        script.postData('/api/auth/log-in', { name, pass })
             .then((data) => {
                 console.log("res", data);
+                window.localStorage.setItem('auth', data.token)
             })
     }
 

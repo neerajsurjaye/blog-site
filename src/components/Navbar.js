@@ -6,11 +6,11 @@ let Navbar = () => {
             App Title
         </div>
 
-        <Link className="btn primary">
+        <Link className="btn primary to-right" to='/auth/log-in'>
             Log In
         </Link>
 
-        <Link className="btn secondary">
+        <Link className="btn secondary" to='/auth/sign-up'>
             Sign up
         </Link>
 

@@ -1,7 +1,7 @@
 :root{
   --back : #000;
   --backSec : #0e0e0e;
-  --textPrimary : #fff;
+  --textPrimary : #eee;
   --textSeconary : #aaa;
   --border:#333;
   --borderHighlight:#aaa;
@@ -31,15 +31,29 @@ code {
     monospace;
 }
 
+.container{
+  width: 70%;
+  margin: 0 auto;
+}
+
+/* usefull */
+.to-right{
+  margin-left: auto !important;
+}
+
 /* buttons */
 .btn{
   color: white;
   text-decoration: none;
   border-radius : 10px;
-  padding: 10px;
+  padding: 6px;
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn:hover{
@@ -75,7 +89,7 @@ code {
 .postCont{
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 100%;
 }
 
 .post{
@@ -89,12 +103,59 @@ code {
   border-radius: 5px;
   cursor: pointer;
   background-color: var(--backSec);
+  padding: 5px 10px;
 }
 
 .post:hover{
   border: 1px solid var(--borderHighlight);
 }
 
+.postHeader{
+  display: flex;
+}
+
 .postTitle{
-  /* border: 1px solid white; */
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.post-user-name{
+  display: flex;
+  align-items: center;
+  margin: 0 8px;
+  font-size: 0.8rem;
+  color: var(--textSeconary);
+}
+
+.postDate{
+  display: flex;
+  align-items: center;
+  margin: 0 8px;
+  font-size: 0.8rem;
+  color: var(--textSeconary);
+}
+
+.postDesc{
+  margin: 10px 0;
+  margin-left: 10px;
+  font-size: 1rem;
+  color: var(--textSeconary);
+}
+
+.postComments{
+  margin-left: 10px;
+  color: var(--textSeconary);
+}
+
+.add-post{
+  display: flex;
+  flex-direction: column;
+  color: var(--textPrimary);
+  text-decoration: none;
+  width: 100%;
+  margin: 5px 0;
+  border: 1px solid var(--border) ;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--backSec);
 }

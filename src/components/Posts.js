@@ -12,15 +12,37 @@ let CreatePostCard = (props) => {
         </div>
     }
 
+    // creates post array and push cards in array
     let postCards = []
     for (let val in post) {
-        postCards.push(
-            <div className="post" key={val}>
-                <div className="postTitle">{post[val].title}</div>
-                <div className="postDesc">{post[val].desc}</div>
-                <div className="comments">Comments : {post[val].comments.length}</div>
-            </div >
-        )
+        if (post[val]) {
+            postCards.push(
+                <div className="post" key={val}>
+
+                    <div className="postHeader">
+                        <div className="postTitle">{post[val].title}</div>
+                        {
+                            post[val].userid ?
+                                <div className="post-user-name">
+                                    - {post[val].userid.userName}
+                                </div> :
+                                <div className="post-user-name">
+                                    "[deleted]"
+                                </div>
+                        }
+                        <div className="postDate">
+                            {(script.getFullDateAndTime(Date.parse(post[val].date)))}
+                        </div>
+                    </div>
+
+
+
+                    <div className="postDesc">{post[val].desc}</div>
+                    <div className="postComments">Comments : {post[val].comments.length}</div>
+
+                </div >
+            )
+        }
     }
 
     return <div className="postCont">
@@ -33,6 +55,7 @@ let Posts = (props) => {
     let [posts, setPosts] = useState()
 
     useEffect(() => {
+        // fetches post
         script.getData('/api/post')
             .then((data) => {
                 console.log(data);
