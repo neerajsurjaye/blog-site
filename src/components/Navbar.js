@@ -34,9 +34,9 @@ let Navbar = () => {
 
         {
             user ? <>
-                <Link className="btn secondary to-right" to={`/user/${user.id}`}>
+                <div className="btn secondary to-right" to={`/user/${user.id}`}>
                     {user.username}
-                </Link>
+                </div>
 
                 <div className="btn primary" onClick={logOut}>
                     LogOut

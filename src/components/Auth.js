@@ -9,12 +9,11 @@ let SignUp = () => {
     let [pass, setPass] = useState('')
     let [message, setMessage] = useState()
 
-    let history = useHistory()
 
     let handleSignUp = (e) => {
-        history.push('/')
         script.postData('/api/auth/sign-up', { name, pass })
             .then((data) => {
+                console.log(data);
                 setMessage(data)
             })
     }

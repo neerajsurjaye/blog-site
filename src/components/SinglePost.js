@@ -5,6 +5,7 @@ import script from "../scripts"
 let SinglePost = () => {
     let params = useParams().id
     let [post, setPost] = useState()
+    let [rerender, setreRender] = useState(0)
 
     useEffect(() => {
         script.getData(`/api/post/${params}`)
@@ -12,7 +13,7 @@ let SinglePost = () => {
                 console.log(data);
                 setPost(data.data)
             })
-    }, [])
+    }, [rerender])
 
     if (!post) {
         return <div className="loading">
@@ -20,17 +21,97 @@ let SinglePost = () => {
         </div>
     }
 
+    return <div className="container">
+        <div className="post">
+
+
+
+            <div className="postHeader">
+
+                <div className="postTitle">
+                    {post.title}
+                </div>
+
+                <div className="postNameDateCont">
+                    {
+                        post.userid ?
+                            <div className="post-user-name">
+                                {post.userid.userName}
+                            </div> :
+                            <div className="post-user-name">
+                                "[deleted]"
+                            </div>
+                    }
+
+                    <div className="postDate">
+                        {(script.getFullDateAndTime(Date.parse(post.date)))}
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div className="postDesc">
+                {post.desc}
+            </div>
+
+        </div>
+
+        <div>
+            Comments
+        </div>
+
+        <AddComment post={post} rerender={rerender} setRerender={setreRender}></AddComment>
+
+        <Comments post={post}></Comments>
+    </div >
+}
+
+let AddComment = (props) => {
+    let [comment, setComment] = useState()
+    let post = props.post
+
+    let addComment = () => {
+        console.log(post);
+        script.postAuthData(
+            `/api/comment/${post._id}`,
+            { desc: comment },
+            window.localStorage.getItem('auth')
+        )
+            .then((message) => {
+                console.log(message);
+                console.log(props);
+                props.setRerender(props.rerender + 1)
+            })
+    }
+
+    return <>
+        <textarea
+            placeholder='Add your comment here:'
+            value={comment}
+            onChange={e => setComment(e.target.value)}
+        ></textarea>
+        <div className='btn secondary' onClick={addComment}>Add Comment</div>
+    </>
+}
+
+
+let Comments = (props) => {
+    let post = props.post
+
     let generateComments = () => {
+        console.log("generating comment");
         if (post.comments.length > 0) {
 
             let commentCards = []
             let comment = post.comments
 
             for (let val in comment) {
-                console.log(comment[val].user);
 
                 commentCards.push(
-                    <div className="post">
+                    <div className="post" key={val}>
 
                         <div className="postHeader">
                             <div className="postUser">
@@ -55,40 +136,9 @@ let SinglePost = () => {
         }
     }
 
-
-    return <div className="container">
-        <div className="post">
-
-            <div className="postHeader">
-                {
-                    post.userid ?
-                        <div className="post-user-name">
-                            {post.userid.userName}
-                        </div> :
-                        <div className="post-user-name">
-                            "[deleted]"
-                        </div>
-                }
-                <div className="postDate">
-                    {(script.getFullDateAndTime(Date.parse(post.date)))}
-                </div>
-            </div>
-
-
-            <div className="postTitle">
-                {post.title}
-            </div>
-            <div className="postDesc">
-                {post.desc}
-            </div>
-
-        </div>
-
-        <div className="comments">
-            Comments
-        </div>
+    return <>
         {generateComments()}
-    </div>
+    </>
 }
 
 export default SinglePost

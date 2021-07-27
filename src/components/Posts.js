@@ -21,17 +21,20 @@ let CreatePostCard = (props) => {
 
                     <div className="postHeader">
                         <div className="postTitle">{post[val].title}</div>
-                        {
-                            post[val].userid ?
-                                <div className="post-user-name">
-                                    - {post[val].userid.userName}
-                                </div> :
-                                <div className="post-user-name">
-                                    "[deleted]"
-                                </div>
-                        }
-                        <div className="postDate">
-                            {(script.getFullDateAndTime(Date.parse(post[val].date)))}
+
+                        <div className="postNameDateCont">
+                            {
+                                post[val].userid ?
+                                    <div className="post-user-name">
+                                        - {post[val].userid.userName}
+                                    </div> :
+                                    <div className="post-user-name">
+                                        "[deleted]"
+                                    </div>
+                            }
+                            <div className="postDate">
+                                {(script.getFullDateAndTime(Date.parse(post[val].date)))}
+                            </div>
                         </div>
                     </div>
 

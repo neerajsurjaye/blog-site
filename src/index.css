@@ -1,12 +1,12 @@
 :root{
   --back : #000;
-  --backSec : #0e0e0e;
+  --backSec : #1d1d1d;
   --textPrimary : #eee;
   --textSeconary : #aaa;
   --border:#333;
   --borderHighlight:#aaa;
   --hover:#555;
-  --primary:#55f;
+  --primary:#f05454;
   --errText : #fab3ae;
   --errBack : #180605;
   --succBack : #071107;
@@ -123,6 +123,10 @@ code {
   font-weight: 600;
 }
 
+.postNameDateCont{
+  display: flex;
+}
+
 .post-user-name{
   display: flex;
   align-items: center;
@@ -173,6 +177,11 @@ input , textarea{
   color: var(--textPrimary);
   padding: 6px 8px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+
+textarea{
+  width: 100%;
 }
 
 form{
@@ -208,4 +217,20 @@ form{
   border-radius: 10px;
   padding: 15px;
   margin-top: 15px;
+}
+
+@media (max-width : 900px) {
+  .container{
+    width: 90%;
+  }
+}
+
+@media (max-width : 720px) {
+  .container{
+    width: 95%;
+  }
+
+  .postHeader{
+    flex-direction: column;
+  }
 }

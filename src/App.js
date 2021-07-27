@@ -32,6 +32,7 @@ function App() {
               <SinglePost></SinglePost>
             </Route>
 
+
             <Route path='/'>
               <AddPost></AddPost>
               <Posts></Posts>
