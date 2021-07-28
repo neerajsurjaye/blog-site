@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Switch, Route, useRouteMatch, useHistory } from "react-router-dom"
+import { Switch, Route, useRouteMatch } from "react-router-dom"
 import script from '../scripts/index'
 import Alert from "./Alert"
 

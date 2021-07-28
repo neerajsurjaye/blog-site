@@ -1,5 +1,5 @@
 let script = (() => {
-    let host = "http://192.168.1.4:5000"
+    let host = "http://localhost:5000"
 
     let postData = (url, data) => {
         return fetch(host + url, {

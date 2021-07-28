@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import script from '../scripts/index'
+import logo from '../img/Logo.png'
 
 let Navbar = () => {
     let [user, setUser] = useState()
@@ -28,9 +29,13 @@ let Navbar = () => {
 
     console.log(user);
     return <nav className="navbar">
-        <div className="navTitle">
-            >.log
-        </div>
+        <Link to='/'>
+            <img className="navTitle" src={logo}></img>
+        </Link>
+
+        <Link to='/' className='btn secondary'>
+            Home
+        </Link>
 
         {
             user ? <>

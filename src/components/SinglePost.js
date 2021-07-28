@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import script from "../scripts"
+import Loader from "./Loader"
+import Alert from "./Alert"
 
 let SinglePost = () => {
     let params = useParams().id
@@ -16,9 +18,7 @@ let SinglePost = () => {
     }, [rerender])
 
     if (!post) {
-        return <div className="loading">
-            Loading
-        </div>
+        return <Loader></Loader>
     }
 
     return <div className="container">
@@ -59,7 +59,7 @@ let SinglePost = () => {
 
         </div>
 
-        <div>
+        <div className='commentsTitle'>
             Comments
         </div>
 
@@ -71,29 +71,36 @@ let SinglePost = () => {
 
 let AddComment = (props) => {
     let [comment, setComment] = useState()
+    let [message, setMessage] = useState()
     let post = props.post
 
     let addComment = () => {
-        console.log(post);
         script.postAuthData(
             `/api/comment/${post._id}`,
             { desc: comment },
             window.localStorage.getItem('auth')
         )
             .then((message) => {
-                console.log(message);
+                setMessage(message);
                 console.log(props);
                 props.setRerender(props.rerender + 1)
             })
     }
 
+    let handleError = () => {
+        if (message && message.err) {
+            return <Alert message={message}></Alert>
+        }
+    }
+
     return <>
+        {handleError()}
         <textarea
             placeholder='Add your comment here:'
             value={comment}
             onChange={e => setComment(e.target.value)}
         ></textarea>
-        <div className='btn secondary' onClick={addComment}>Add Comment</div>
+        <div type='button' className='btn secondary' onClick={addComment} >Add Comment</div>
     </>
 }
 

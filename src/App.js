@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import AddPost from "./components/AddPostComp";
 import AddPostPage from "./components/AddPostPage";
 import SinglePost from "./components/SinglePost";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -33,15 +34,16 @@ function App() {
             </Route>
 
 
-            <Route path='/'>
+            <Route path={['/:page', '/']}>
               <AddPost></AddPost>
               <Posts></Posts>
             </Route>
 
 
+
           </Switch>
         </div>
-
+        <Footer></Footer>
       </BrowserRouter>
     </div>
   );

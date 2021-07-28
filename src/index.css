@@ -1,12 +1,14 @@
 :root{
   --back : #000;
   --backSec : #1d1d1d;
+  --backTri: #171717;
   --textPrimary : #eee;
   --textSeconary : #aaa;
   --border:#333;
   --borderHighlight:#aaa;
   --hover:#555;
   --primary:#f05454;
+  --primaryLight:#fa5d5d;
   --errText : #fab3ae;
   --errBack : #180605;
   --succBack : #071107;
@@ -37,7 +39,7 @@ code {
 
 .container{
   width: 70%;
-  margin: 0 auto;
+  margin: 25px auto;
 }
 
 /* usefull */
@@ -53,7 +55,7 @@ code {
   padding: 6px;
   font-weight: 600;
   font-size: 1rem;
-  margin: 10px;
+  margin: 4px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -64,6 +66,10 @@ code {
   background-color: var(--hover);
 }
 
+.btn-large{
+  width: 100%;
+}
+
 .primary{
   background-color: var(--primary);
   color: var(--back);
@@ -71,7 +77,7 @@ code {
 }
 
 .primary:hover{
-
+  background-color: var(--primaryLight);
 }
 
 .secondary{
@@ -87,6 +93,10 @@ code {
   display:flex;
   align-items: center;
   padding: 0 10px;
+}
+
+.navTitle{
+  max-width: 100px;
 }
 
 /* post */
@@ -106,8 +116,7 @@ code {
   border: 1px solid var(--border) ;
   border-radius: 5px;
   cursor: pointer;
-  background-color: var(--backSec);
-  padding: 5px 20px;
+  background-color: var(--backTri);
 }
 
 .post:hover{
@@ -116,6 +125,9 @@ code {
 
 .postHeader{
   display: flex;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--backSec);
 }
 
 .postTitle{
@@ -141,10 +153,11 @@ code {
   margin: 0 8px;
   font-size: 0.8rem;
   color: var(--textSeconary);
+  white-space: nowrap;
 }
 
 .postDesc{
-  margin: 10px 0;
+  margin: 20px 0;
   margin-left: 10px;
   font-size: 1rem;
   color: var(--textSeconary);
@@ -153,6 +166,7 @@ code {
 .postComments{
   margin-left: 10px;
   color: var(--textSeconary);
+  margin-bottom: 10px;
 }
 
 .add-post{
@@ -166,6 +180,11 @@ code {
   border-radius: 5px;
   cursor: pointer;
   background-color: var(--backSec);
+}
+
+.commentsTitle{
+  font-size: 1.2rem;
+  margin-top: 20px;
 }
 
 
@@ -217,6 +236,36 @@ form{
   border-radius: 10px;
   padding: 15px;
   margin-top: 15px;
+}
+
+.footer{
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--border);
+  font-size: 1.2rem;
+}
+
+.pageControl{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer a{
+  color: var(--border);
+  text-decoration: none;
+}
+
+
+.loader{
+  width: 100%;
+  min-height: 200px;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width : 900px) {
