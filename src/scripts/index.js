@@ -1,5 +1,6 @@
 let script = (() => {
-    let host = "http://localhost:5000"
+    // let host = "http://localhost:5000"
+    let host = "https://consolelogfiveseven.herokuapp.com"
 
     let postData = (url, data) => {
         return fetch(host + url, {

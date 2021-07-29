@@ -15,17 +15,14 @@ let SinglePost = () => {
                 console.log(data);
                 setPost(data.data)
             })
-    }, [rerender])
+    }, [rerender, params])
 
     if (!post) {
         return <Loader></Loader>
     }
 
-    return <div className="container">
+    return <>
         <div className="post">
-
-
-
             <div className="postHeader">
 
                 <div className="postTitle">
@@ -66,7 +63,7 @@ let SinglePost = () => {
         <AddComment post={post} rerender={rerender} setRerender={setreRender}></AddComment>
 
         <Comments post={post}></Comments>
-    </div >
+    </>
 }
 
 let AddComment = (props) => {

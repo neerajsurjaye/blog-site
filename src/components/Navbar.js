@@ -30,7 +30,7 @@ let Navbar = () => {
     console.log(user);
     return <nav className="navbar">
         <Link to='/'>
-            <img className="navTitle" src={logo}></img>
+            <img className="navTitle" src={logo} alt='logo'></img>
         </Link>
 
         <Link to='/' className='btn secondary'>

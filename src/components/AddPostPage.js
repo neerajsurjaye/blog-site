@@ -19,8 +19,7 @@ let AddPostPage = () => {
         return <Alert message={message}></Alert>
     }
 
-    return <div className="container">
-
+    return <>
         <h2>Add Post</h2>
         <form>
             <label className='inputTitle'>Title:</label>
@@ -37,7 +36,7 @@ let AddPostPage = () => {
             <input type='button' value='Submit' className='btn' onClick={handleSubmit}></input>
         </form>
 
-    </div >
+    </ >
 }
 
 export default AddPostPage

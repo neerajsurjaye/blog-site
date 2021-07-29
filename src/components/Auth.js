@@ -19,10 +19,10 @@ let SignUp = () => {
     }
 
     if (message) {
-        return <Alert message={message}></Alert>
+        return <Alert message={message} to={"/auth/log-in"}></Alert>
     }
 
-    return <div className="container">
+    return <>
         <h1>Sign-Up</h1>
         <form>
             <label className='inputTitle'>UserName:</label>
@@ -33,7 +33,7 @@ let SignUp = () => {
 
             <input type='button' className='btn' onClick={handleSignUp} value='Submit'></input>
         </form>
-    </div>
+    </>
 }
 
 let LogIn = () => {
@@ -56,7 +56,7 @@ let LogIn = () => {
         return <Alert message={message}></Alert>
     }
 
-    return <div className="container">
+    return <>
         <h1>Log-in</h1>
         <form>
             <label className='inputTitle'>UserName:</label>
@@ -67,7 +67,7 @@ let LogIn = () => {
 
             <input type='button' className='btn' onClick={handleLogIn} value='Submit'></input>
         </form>
-    </div>
+    </>
 }
 
 let Auth = (props) => {

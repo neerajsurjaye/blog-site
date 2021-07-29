@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import script from '../scripts/index'
+import Alert from "./Alert"
 import Loader from "./Loader"
 
 let CreatePostCard = (props) => {
     //creates post cards
     let post = props.post
+    console.log(post);
 
-    if (!post) {
+    if (!post || post.length === 0) {
         return <div className="err">
-            No Posts
+            <Alert
+                message={{ err: "No Posts or last page" }}
+            ></Alert>
         </div>
     }
 
@@ -87,19 +91,23 @@ let Posts = (props) => {
             setPage(0)
         }
 
-        script.getData(`/api/post/page/${page}`)
-            .then((data) => {
-                setPosts(data)
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+        console.log(page);
+        if (page >= 0) {
+            script.getData(`/api/post/page/${page}`)
+                .then((data) => {
+                    setPosts(data)
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+        }
     }, [page])
 
     if (!posts) {
         return <Loader></Loader>
     }
 
+    console.log(posts, !posts);
     return <div className="posts">
         <CreatePostCard post={posts.data}></CreatePostCard>
         <div className="pageControl">

@@ -38,7 +38,7 @@ code {
 }
 
 .container{
-  width: 70%;
+  width: 50%;
   margin: 25px auto;
 }
 
@@ -145,6 +145,7 @@ code {
   margin: 0 8px;
   font-size: 0.8rem;
   color: var(--textSeconary);
+  white-space: nowrap;
 }
 
 .postDate{
@@ -161,6 +162,7 @@ code {
   margin-left: 10px;
   font-size: 1rem;
   color: var(--textSeconary);
+  white-space: pre-wrap;
 }
 
 .postComments{
@@ -266,6 +268,12 @@ form{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width : 1200px) {
+  .container{
+    width: 75%;
+  }
 }
 
 @media (max-width : 900px) {

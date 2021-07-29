@@ -8,17 +8,19 @@ import SinglePost from "./components/SinglePost";
 import Footer from "./components/Footer";
 
 function App() {
+
+
   return (
     <div className="App">
 
       <BrowserRouter>
-        <Navbar></Navbar>
+        <Navbar ></Navbar>
         <div className="container">
           <Switch>
 
             {/* //auth route */}
             <Route path='/auth/'>
-              <Auth></Auth>
+              <Auth ></Auth>
             </Route>
 
             <Route path='/add-post'>
